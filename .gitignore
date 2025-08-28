@@ -21,4 +21,19 @@ env/
 .DS_Store
 Thumbs.db
 
+# Python packaging
+*.egg-info/
+dist/
+build/
+
+# pytest cache
+.pytest_cache/
+
+# Coverage reports
+.coverage
+htmlcov/
+
+# Logs
+*.log
+
 # ...add any other files/folders you want to ignore...
