@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import uuid
 from .adapters import adapters
-from server.tools import fs, math, system
+from server.tools import fs, math, system, git_tool, db_tool, http_tool, process
 
 app = FastAPI(title="MCP Server", version="0.1")
 
@@ -32,3 +32,7 @@ async def handle_request(req: MCPRequest):
 app.include_router(fs.router, prefix="/tools", tags=["fs"])
 app.include_router(math.router, prefix="/tools", tags=["math"])
 app.include_router(system.router, prefix="/tools", tags=["system"])
+app.include_router(git_tool.router, prefix="/api")
+app.include_router(db_tool.router, prefix="/api")
+app.include_router(http_tool.router, prefix="/api")
+app.include_router(process.router, prefix="/tools/process")

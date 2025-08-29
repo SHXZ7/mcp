@@ -1,20 +1,23 @@
 from mcp_client import MCPClient
 
-c = MCPClient()
+c = MCPClient("http://localhost:8000")
 
-# Read a file
+print("=== FS Tool ===")
 print(c.request("http", {
+    "method": "POST",
     "url": "http://localhost:8000/tools/fs/read",
-    "path": "README.md"
+    "data": {"path": "README.md"}
 }))
 
-# Run math
+print("=== Math Tool ===")
 print(c.request("http", {
+    "method": "POST",
     "url": "http://localhost:8000/tools/math/eval",
-    "expr": "math.sqrt(16)"
+    "data": {"expr": "2+2*5"}
 }))
 
-# System info
+print("=== System Tool ===")
 print(c.request("http", {
+    "method": "GET",
     "url": "http://localhost:8000/tools/system/info"
 }))

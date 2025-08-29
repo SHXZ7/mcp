@@ -40,6 +40,10 @@ class MCPClient:
         except Exception as e:
             raise MCPClientError(f"Failed to parse JSON response: {e}; raw={r.text}") from e
 
+    def call_tool(self, tool: str, input_data: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+        """Convenience method that matches the test file expectations."""
+        return self.request(tool, input_data)
+
 
 class AsyncMCPClient:
     """Async MCP client using httpx.AsyncClient."""
@@ -75,6 +79,10 @@ class AsyncMCPClient:
             return r.json()
         except Exception as e:
             raise MCPClientError(f"Failed to parse JSON response: {e}; raw={r.text}") from e
+
+    async def call_tool(self, tool: str, input_data: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+        """Convenience method that matches the test file expectations."""
+        return await self.request(tool, input_data)
 
 # small convenience function for interactive use
 def quick_test_sync(base_url: str = "http://localhost:8000") -> None:
